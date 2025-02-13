@@ -1,7 +1,7 @@
 \documentclass[hidelinks]{article}
 \usepackage[a4paper, total={7in, 10in}]{geometry}
 \usepackage[dvipsnames]{xcolor}
-\usepackage{amsmath}
+\usepackage{amsmath, amssymb}
 \usepackage{amsfonts}
 \usepackage{tikz}
 \usepackage{tkz-euclide}
@@ -31,29 +31,37 @@
 	
 	\section{Question 1}
 
-	What is the maximum number $n$ of orthogonal vectors we can put into this vector space? Explain why, in detail.\\
+	\textit{What is the maximum number $n$ of orthogonal vectors we can put into this vector space? Explain why, in detail.}\\
 	
-		\textit{Initial Guess:} The maximum number of orthogonal vectors that can fit into $\mathbb{R}^d$ is $d$, no intuition why yet.
+	{\color{Thistle}{\textbf{Answer:} the maximum number of orthogonal vectors that can fit into $\mathbb{R}^d$ is $d$.}}
 	
-	{\color{SkyBlue}
-		Answer work
+	\textbf{Why?:}
 		
-		\color{Thistle}{\textbf{Answer}}
-	}
+	For two vectors to be orthogonal, their inner product must be zero. In order for a group of vectors to be orthogonal, this relation must hold true for all pairs of vectors within the group. One useful property we get when assuming that the vectors are orthogonal is that they are also linearly independent, which helps us set the upper bound for the number of vectors in the vector space.
+	
+	Since $\mathbb{R}^d$ is a $d$-dimensional space, the maximum number of linearly independent vectors in $\mathbb{R}^d$ is $d$. Since orthogonal vectors are also linearly independent, it also follows that the maximum number of orthogonal vectors in $\mathbb{R}^d$ is $d$.
+	
+	An example of this is the standard basis vectors for $\mathbb{R}^d$. 
+	
+	\[e_1 = (1,0,0,\dots,0),\quad e_2 = (0,1,0,\dots,0),\quad\dots,\quad e_d = (0,0,0,\dots,1)\]
+	
+	These vectors satisfy $e_i \cdot e_j = 0$ for $i\ne j$, which means that there are $d$ orthogonal vectors in $\mathbb{R}^d$.
 	
 	\section{Question 2}
 	
-	Suppose we concatenate the $n$ orthogonal vectors, each in $\mathbb{R}^d$, into a single matrix. What properties will this matrix have? Be thorough.
+	\textit{Suppose we concatenate the $n$ orthogonal vectors, each in $\mathbb{R}^d$, into a single matrix. What properties will this matrix have? Be thorough.}
 	
-	{\color{SkyBlue}
-		Answer work
-		
-		\color{Thistle}{\textbf{Answer}}
-	}
+	{\color{Thistle}{\textbf{Answer:}}} Let the matrix $A$ be defined by concatenating $n$ orthogonal vectors in $\mathbb{R}^d$. If the vectors are normalized, then they form an \textbf{orthonormal} set $(v_i ^\intercal v_j = 0 \text{ for } i \ne j, v_i ^\intercal v_i = 1)$. If this is the case, then we can say that $A$ is \textbf{semi-orthogonal}, which means that $A ^\intercal A = I_n$ where $I_n$ is the $n\times n$ identity matrix. 
+	
+	Since the columns are orthogonal and non-zero, they are \textbf{linearly independent}, which means that \textbf{$\text{rank } A = \text{min}(n,d)$} If $n \le d$ .
+	
+	(\textit{Note:} if $n = d$, and the columns are orthonormal, then $A$ is orthogonal)
+	
+
 	
 	\section{Question 3}
 	
-	Suppose $n\gg d$. Assuming they are packed "optimally", what bounds can we place on the expected dot product of two random vectors from our set? To answer this, you should do some mix of reading papers, trying to derive a bound, and doing numerical experiments. Include your code, cite your sources.
+	\textit{Suppose $n\gg d$. Assuming they are packed "optimally", what bounds can we place on the expected dot product of two random vectors from our set? To answer this, you should do some mix of reading papers, trying to derive a bound, and doing numerical experiments. Include your code, cite your sources.}
 	
 	{\color{SkyBlue}
 		Answer work
@@ -62,7 +70,7 @@
 	}
 	
 	\section{Question 4}
-	Why do you think thinking about this is relevant for the subject of the course? What do you think these vectors are supposed to represent, and why might we care about them being "optimally packed"?
+	\textit{Why do you think thinking about this is relevant for the subject of the course? What do you think these vectors are supposed to represent, and why might we care about them being "optimally packed"?}
 	
 	{\color{SkyBlue}
 		Answer work
