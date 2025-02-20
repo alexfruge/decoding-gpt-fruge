@@ -8,6 +8,9 @@
 \usepackage[unicode]{hyperref}
 \usepackage[all]{hypcap}
 \usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{booktabs} % For better table formatting
+\usepackage{siunitx}  % For scientific notation formatting
 
 \usetikzlibrary{angles,calc, decorations.pathreplacing}
 
@@ -20,8 +23,6 @@
 \date{February 11, 2025}
 \begin{document}
 	\hypersetup{bookmarksnumbered=true,}
-	\pagecolor{black}
-	\color{white}
 	\maketitle
 
 	
@@ -63,19 +64,59 @@
 	
 	\textit{Suppose $n\gg d$. Assuming they are packed "optimally", what bounds can we place on the expected dot product of two random vectors from our set? To answer this, you should do some mix of reading papers, trying to derive a bound, and doing numerical experiments. Include your code, cite your sources.}
 	
-	{\color{SkyBlue}
-		Answer work
-		
-		\color{Thistle}{\textbf{Answer}}
-	}
+	In this context, for the vectors to be packed optimally, I'll be assuming that they are uniformly distributed in the unit sphere in $\mathbb{R}^d$. In this situation, we can take two independently sampled vectors from our space, and find the expected value of their dot product.
+	
+	I'll be using a simulation (\url{https://github.com/alexfruge/decoding-gpt-fruge/blob/main/Homework/hw1sim.py}) to gain some initial intuition as to what these bounds could be.
+	
+	
+	\begin{table}[h!]
+		\centering
+		\begin{tabular}{c S[table-format=1.6e-2] S[table-format=1.6e-2]}
+			\toprule
+			\textbf{Dimension (\(d\))} & \textbf{Mean Dot Product} & \textbf{Variance} \\
+			\midrule
+			10    & 5.320471e-05   & 2.040759e-07  \\
+			50    & 2.963093e-05   & 3.253653e-08  \\
+			100   & 2.457548e-05   & 1.105645e-08  \\
+			500   & 7.106165e-06   & 5.118772e-09   \\
+			1000  & 7.432451e-06   & 1.155743e-09  \\
+			\bottomrule
+		\end{tabular}
+		\caption{Mean Dot Product and Variance for Different Dimensions}
+		\label{tab:dot_product_stats}
+	\end{table}
+	
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=6in]{simfig.png}
+		\caption{Plot showing simulation results for mean dot product and variance of dot products as dimension changes.}
+	\end{figure}
+	\newpage
 	
 	\section{Question 4}
 	\textit{Why do you think thinking about this is relevant for the subject of the course? What do you think these vectors are supposed to represent, and why might we care about them being "optimally packed"?}
 	
-	{\color{SkyBlue}
-		Answer work
-		
-		\color{Thistle}{\textbf{Answer}}
-	}
+	Whenever the vectors in our space are "optimally packed", it means that 
+	\newpage
 	
+	\section{LLM Logs}
+	
+	\textit{Here's a prompt that I asked for question 3: } Suppose we have a vector space $\mathbb{R}^d$, with $n$ vectors in this space. Assume that $n \gg d$. What kind of bounds could be useful for finding the expected value of two random vectors from the set?
+	
+	\textit{ChatGPT-4o Response: }Given $n$ vectors in $\mathbb{R}^d$ with $n \gg d$, a useful approach for finding the expected value of the dot product (or other function) of two randomly chosen vectors is to consider concentration inequalities and properties of high-dimensional geometry. Here are some useful tools and bounds:\\
+	
+	\textbf{Concentration of Measure}: In high-dimensional spaces, random vectors tend to be nearly orthogonal. Specifically, if the vectors are normalized, the dot product between two randomly chosen vectors is close to zero with high probability. This can be formalized using concentration inequalities like Hoeffding's inequality or McDiarmid's inequality, depending on the dependence structure.\\
+	
+	\textbf{Johnson-Lindenstrauss Lemma}: This lemma states that a set of $n$ points in $\mathbb{R}^d$	can be embedded into $\mathbb{R}^k$ (with $k = O(\log n / \epsilon^2)$) such that pairwise distances are approximately preserved. This can be used to bound the expected distance or dot product between two vectors, as the reduced dimensionality preserves the geometric structure.\\
+	
+	\textbf{Inner Product Expectation}: If the vectors are drawn uniformly from the unit sphere $S^{d-1}$, then the expected dot product between two randomly chosen vectors is: \[\mathbb{E}[\langle X, Y \rangle] = 0\] because of symmetry. The variance is $\frac{1}{d}$, suggesting that the dot products are typically small when $d$ is large.\\
+	
+	\textbf{Random Matrix Theory}: If the vectors are organized into a matrix $A$ of size $d \times n$, then properties of the Gram matrix $G = A^{\intercal}A$(e.g., spectral norm bounds) can provide information about the correlations between the vectors.\\
+	
+	\textbf{Covering Numbers and Metric Entropy}: For understanding the distribution of the vectors, bounds on covering numbers or metric entropy can provide insight into the expected geometric arrangement of the vectors, which can, in turn, help estimate expected values of distances or dot products.\\
+	
+	If you can provide more specifics about the distribution of the vectors or the exact expected value you're looking for, I can tailor the bounds and tools more precisely!\\
+
+	\textit{Prompt intent: }I intended for this prompt to be a little more general, but 4o went into a good bit of detail, which ended up being useful to kickstart my own research into the problem.
+		
 \end{document}
