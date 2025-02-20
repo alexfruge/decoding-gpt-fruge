@@ -32,7 +32,7 @@ def expected_dot_product_statistics(n, d, num_trials=100):
 # Parameters
 n = 1000  # Number of vectors
 d_values = [10, 50, 100, 500, 1000]  # Different dimensions
-num_trials = 100
+num_trials = 25
 
 # Compute statistics for each dimension
 results = {}
