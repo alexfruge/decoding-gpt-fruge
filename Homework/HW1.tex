@@ -62,12 +62,12 @@
 	
 	\section{Question 3}
 	
-	\textit{Suppose $n\gg d$. Assuming they are packed "optimally", what bounds can we place on the expected dot product of two random vectors from our set? To answer this, you should do some mix of reading papers, trying to derive a bound, and doing numerical experiments. Include your code, cite your sources.}
+	\textit{Suppose $n\gg d$. Assuming they are packed "optimally", what bounds can we place on the expected dot product of two random vectors from our set? To answer this, you should do some mix of reading papers, trying to derive a bound, and doing numerical experiments. Include your code, cite your sources.}\\
 	
 	In this context, for the vectors to be packed optimally, I'll be assuming that they are uniformly distributed in the unit sphere in $\mathbb{R}^d$. In this situation, we can take two independently sampled vectors from our space, and find the expected value of their dot product.
 	
 	I'll be using a simulation (\url{https://github.com/alexfruge/decoding-gpt-fruge/blob/main/Homework/hw1sim.py}) to gain some initial intuition as to what these bounds could be.
-	
+	\\
 	
 	\begin{table}[h!]
 		\centering
@@ -91,12 +91,13 @@
 		\includegraphics[width=6in]{simfig.png}
 		\caption{Plot showing simulation results for mean dot product and variance of dot products as dimension changes.}
 	\end{figure}
-	\newpage
+	
+	It appears that as dimension increases, the expected dot product of two vectors approaches zero, as well as the variance of the dot product. The expected values approach zero as the dimension increases, showing that the larger $d$ gets, the closer our vectors get to truly being orthogonal. The relationship variance has with dimension is also reasonable, as one could expect that as more dimensions are added, there are more chances for the vector to reach orthogonality, meaning that the deviations from orthogonality are smaller, leading to a smaller variance.
 	
 	\section{Question 4}
 	\textit{Why do you think thinking about this is relevant for the subject of the course? What do you think these vectors are supposed to represent, and why might we care about them being "optimally packed"?}
 	
-	Whenever the vectors in our space are "optimally packed", it means that 
+	The vectors likely represent the embeddings that we feed whatever network we're training at the time. The reason we care about them being optimally packed is that by spacing out the vectors as much as possible, we are able to minimize errors, and maximize error detection.
 	\newpage
 	
 	\section{LLM Logs}
